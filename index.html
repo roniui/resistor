@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="manifest" href="/resistor/manifest.json">
+     
+    <title>Resistor Value</title>
+    <style>
+        
+        header {
+            
+           position: absolute;
+           top: 10px;
+                      
+            
+        }
+        
+        
+        
+        
+        body {
+            font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1400px;
+    margin: auto;
+    background-color: #0c2c4a;
+           }
+        #band-name {
+           position: absolute;
+           top: 35%; 
+           line-height: 40px;
+                          }
+                          
+         p {
+             
+             background-color: #e2e2e2;
+             padding-right: 10px;
+             padding-left: 10px;
+             border-radius: 20px;             
+         }                 
+                       
+           a {
+               color: #1d1d1b;
+                              
+           }           
+                          
+    </style>
+</head>
+<body>
+    
+    <header>
+      <a href="/index.html" style="text-decoration: none; color: #e2e2e2;">Resistor Color Code Calculator </a>
+        
+    </header>
+    
+   <div id="band-name">
+       
+       <p><a href="/3band.html" style="text-decoration: none;">3/4 Band Resistor Color Code Calculator</a></p>
+    
+    <img src="resistor2.png" alt="" height="50px" width="50px">
+    <img src="resistor1.png" alt="" height="50px" width="50px">
+    <img src="resistor2.png" alt="" height="50px" width="50px">
+    <img src="resistor1.png" alt="" height="50px" width="50px">
+    <img src="resistor2.png" alt="" height="50px" width="50px">
+    <img src="resistor1.png" alt="" height="50px" width="50px">
+    <img src="resistor2.png" alt="" height="50px" width="50px">
+   
+  <p><a href="/5band.html" style="text-decoration: none;"> &nbsp;&nbsp;5 Band Resistor Color Code Calculator </a></p>
+  
+  
+  </div>
+  
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("service-worker.js")
+        .then((registration) => {
+          console.log("Service Worker registered with scope:", registration.scope);
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
+  </script>
+</body>
+  </html>
