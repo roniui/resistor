@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3/4-Band Resistor Color Code Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e2e2e2;
+        }
+        
+        #band5html {
+            
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            position: fixed;
+            bottom: 100px;
+            left: 0;
+            
+            
+        }
+        
+        footer {
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+        .calculator {
+            background-color: #e2e2e2;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: 90%;          
+            width: 400px;
+            text-align: center;
+        }
+        .color-selector {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        select {
+            width: 150px;
+            padding: 5px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .color-box {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #000;
+            background-color: white;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>3/4-Band Resistor Color Code Calculator</h2>
+        
+        <!-- Band 1 Selector -->
+        <div class="color-selector">
+            <label>Band 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="band1" onchange="updateColor('band1', 'colorBox1')">
+                <option value="1" data-color="#663200">Brown (1)</option>
+                <option value="2" data-color="red">Red (2)</option>
+                <option value="3" data-color="#FF8C00">Orange (3)</option>
+                <option value="4" data-color="yellow">Yellow (4)</option>
+                <option value="5" data-color="#00FF40">Green (5)</option>
+                <option value="6" data-color="blue">Blue (6)</option>
+                <option value="7" data-color="#720e9e">Violet (7)</option>
+                <option value="8" data-color="gray">Gray (8)</option>
+                <option value="9" data-color="white">White (9)</option>
+            </select>
+            <div id="colorBox1" class="color-box"></div>
+        </div>
+        
+        <!-- Band 2 Selector -->
+        <div class="color-selector">
+            <label>Band 2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="band2" onchange="updateColor('band2', 'colorBox2')">
+                <option value="0" data-color="black">Black (0)</option>
+                <option value="1" data-color="#663200">Brown (1)</option>
+                <option value="2" data-color="red">Red (2)</option>
+                <option value="3" data-color="#FF8C00">Orange (3)</option>
+                <option value="4" data-color="yellow">Yellow (4)</option>
+                <option value="5" data-color="#00FF40">Green (5)</option>
+                <option value="6" data-color="blue">Blue (6)</option>
+                <option value="7" data-color="#720e9e">Violet (7)</option>
+                <option value="8" data-color="gray">Gray (8)</option>
+                <option value="9" data-color="white">White (9)</option>
+            </select>
+            <div id="colorBox2" class="color-box"></div>
+        </div>
+
+        <!-- Multiplier Selector -->
+        <div class="color-selector">
+            <label>Multiplier: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="multiplier" onchange="updateColor('multiplier', 'colorBox3')">
+                <option value="1" data-color="black">Black (×1 Ω)</option>
+                <option value="10" data-color="#663200">Brown (×10 Ω)</option>
+                <option value="100" data-color="red">Red (×100 Ω)</option>
+                <option value="1000" data-color="#FF8C00">Orange (×1 kΩ)</option>
+                <option value="10000" data-color="yellow">Yellow (×10 kΩ)</option>
+                <option value="100000" data-color="#00FF40">Green (×100 kΩ)</option>
+                <option value="1000000" data-color="blue">Blue (×1 MΩ)</option>
+                <option value="10000000" data-color="#720e9e">Violet (×10 MΩ)</option>
+                <option value="0.1" data-color="gold">Gold (×0.1 Ω)</option>
+                <option value="0.01" data-color="silver">Silver (×0.01 Ω)</option>
+            </select>
+            <div id="colorBox3" class="color-box"></div>
+        </div>
+
+        <!-- Tolerance Selector -->
+        <div class="color-selector">
+            <label>Tolerance: &nbsp;&nbsp;&nbsp;</label>
+            <select id="tolerance" onchange="updateColor('tolerance', 'colorBox4')">
+                <option value="none" data-color="white">None/Absent</option>
+                <option value="gold" data-color="gold">Gold (±5%)</option>
+                <option value="silver" data-color="silver">Silver (±10%)</option>
+            </select>
+            <div id="colorBox4" class="color-box"></div>
+        </div>
+        
+        <button onclick="calculateResistance()">Calculate</button>
+        
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Update the color of the box beside the dropdown
+        function updateColor(selectId, boxId) {
+            const select = document.getElementById(selectId);
+            const selectedOption = select.options[select.selectedIndex];
+            const color = selectedOption.getAttribute('data-color');
+            document.getElementById(boxId).style.backgroundColor = color;
+        }
+
+        // Automatically update colors on page load
+        function initializeColors() {
+            updateColor('band1', 'colorBox1');
+            updateColor('band2', 'colorBox2');
+            updateColor('multiplier', 'colorBox3');
+            updateColor('tolerance', 'colorBox4');
+        }
+
+        // Calculate the resistance
+        function calculateResistance() {
+            const band1 = parseInt(document.getElementById('band1').value);
+            const band2 = parseInt(document.getElementById('band2').value);
+            const multiplier = parseFloat(document.getElementById('multiplier').value);
+            const tolerance = document.getElementById('tolerance').value;
+
+            let resistanceValue = ((band1 * 10) + band2) * multiplier;
+            let toleranceValue = tolerance === "gold" ? 0.05 : tolerance === "silver" ? 0.10 : 0.20;
+
+            const lowerLimit = resistanceValue * (1 - toleranceValue);
+            const upperLimit = resistanceValue * (1 + toleranceValue);
+
+            let ohms = `${resistanceValue.toFixed(2)} Ω`;
+            let kiloohms = `${(resistanceValue / 1000).toFixed(2)} kΩ`;
+
+            document.getElementById('result').textContent = `Resistance: ${ohms} (${kiloohms}) ±${(toleranceValue * 100).toFixed(0)}% [${lowerLimit.toFixed(2)} Ω - ${upperLimit.toFixed(2)} Ω]`;
+        }
+
+        // Initialize the color boxes on page load
+        window.onload = initializeColors;
+    </script>
+    <div id="band5html"> <a href="/5band.html" style="text-decoration: none;">5-Band Resistor Color Code Calculator</a> </div>
+    <footer>
+        © 2024 Resistor Calculator. All rights reserved.
+</body>
+</html>
