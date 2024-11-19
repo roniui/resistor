@@ -1,7 +1,8 @@
-const CACHE_NAME = "resistor-calculator-cache-v1";
+const CACHE_NAME = "resistor-calculator-cache-v1.1";
 const urlsToCache = [
   "./", // Main page
-  "./index.html", // Your main site page
+  "./index.html",// Your main site page
+  "./install.js",
   "./5band.html", // Link to 5-band calculator
   "./3band.html", // Link to 3-band calculator
   "./manifest.json",
