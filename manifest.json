@@ -1,0 +1,21 @@
+{
+  "name": "Resistor Calculator Hub",
+  "short_name": "ResistorHub",
+  "description": "Hub for resistor calculators, including 3-band and 5-band calculators.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0c2c4a",
+  "theme_color": "#0c2c4a",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
