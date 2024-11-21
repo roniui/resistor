@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5-Band Resistor Color Code Calculator</title>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -12,13 +13,27 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #e2e2e2;
-        }
+            background-color: #0c2c4a;
+            overflow: hidden;        }
+        
+        header {
+            width: 100%;
+            background-color: #0c2c4a;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            color: #dfdfdf;
+            position: fixed;
+            top: 3px;
+            left: 0;
+                    }
+        
+        
         
         #band3html {
             
-            width: 100%;
-            background-color: #f0f0f0;
+            width: 90%;
+            background-color: #0c2c4a;
             padding: 10px;
             border-radius: 50px;
             text-align: center;
@@ -26,19 +41,19 @@
             color: #555;
             position: fixed;
             bottom: 100px;
-            left: 0;
+            
             
             
         }
         footer {
             width: 100%;
-            background-color: #f0f0f0;
+            background-color: #0c2c4a;
             padding: 10px;
             text-align: center;
             font-size: 14px;
-            color: #555;
+            color: #dfdfdf;
             position: fixed;
-            bottom: 0;
+            bottom: 3px;
             left: 0;
         }
         .calculator {
@@ -46,7 +61,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            height: 90%;
+            height: 80%;
             width: 450px;
             text-align: center;
         }
@@ -54,29 +69,43 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-        }
+            
+                    }
         select {
             width: 150px;
             padding: 5px;
             margin-right: 10px;
             font-size: 14px;
+            border-radius: 50px;
         }
         .color-box {
             width: 80px;
             height: 30px;
             border: 1px solid #000;
             background-color: white;
+            border-radius: 50px;
         }
         .result {
             margin-top: 20px;
             font-size: 20px;
             font-weight: bold;
         }
+        
+         .calculate {
+            
+            border-radius: 50px;
+           font-size: 18px;        }
     </style>
 </head>
 <body>
+    
+    <header>
+<b><img src="icon512×512.png" alt="" style="position: absolute; height: 36px; width: 36px; left: 25px; top: 7px;" > Resistor Hub</b>
+        
+        
+    </header>
     <div class="calculator">
-        <h2>5-Band Resistor Color Code Calculator</h2>
+        <h3>5-Band Resistor Color Code Calculator</h3>
 
         <!-- Band 1 Selector -->
         <div class="color-selector">
@@ -165,7 +194,7 @@
             <div id="colorBox5" class="color-box"></div>
         </div>
 
-        <button onclick="calculateResistance()">Calculate</button>
+        <button class="calculate" onclick="calculateResistance()">Calculate</button>
 
         <div class="result" id="result"></div>
     </div>
@@ -223,8 +252,8 @@
         window.onload = initializeColors;
     </script>
     
-    <div id="band3html"> <a href="./3band.html" style="text-decoration: none;">3/4-Band Resistor Color Code Calculator</a> </div>
-   <footer>
-        © 2024 Resistor Calculator. All rights reserved.</footer>
+    <div id="band3html"> <a href="/band3.html" style="text-decoration: none; color: #dfdfdf;">3/4-Band Resistor Color Code Calculator</a> </div>
+   <footer>    
+    © 2024 Resistor Hub. All rights reserved.<br> <br> Last Updated: 21/09/2024 22:11:42 IST</footer>
 </body>
-                  </html>
+    </html>
