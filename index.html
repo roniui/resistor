@@ -5,14 +5,16 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="manifest" href="/resistor/manifest.json">
      
-    <title>Resistor Value</title>
+    <title>Resistor Hub</title>
     <style>
         
         header {
             
-           position: absolute;
+           position: absolute;        
            top: 10px;
-                      
+           font-size: 25px;      
+           top: 15px;
+                   
             
         }
         
@@ -29,11 +31,12 @@
     max-width: 1400px;
     margin: auto;
     background-color: #0c2c4a;
+    
            }
         #band-name {
            position: absolute;
            top: 35%; 
-           line-height: 40px;
+           line-height: 40px;           
                           }
                           
          p {
@@ -48,13 +51,13 @@
                color: #1d1d1b;
                               
            }           
-                  #btnInstall {
+                 #btnInstall {
   padding: 10px 20px;
   font-size: 16px;
-  color: #0c2c4a;
+  color: #e2e2e2;
   background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
   margin-bottom: 10px;
   position: absolute;
@@ -65,29 +68,31 @@
 
 #btnInstall:hover {
   background-color: #0056b3;
-}       
+  
+}         
     </style>
 </head>
 <body>
     
+   
+    <img src="/resistor1.png" 
+         style="position: absolute; 
+                top: 60px;  
+                width: 169px; 
+                height: 169px; 
+                transform: rotate(-45deg); 
+                transform-origin: center; 
+                z-index: -1;">
+    
     <header>
-      <a href="resistor/index.html" style="text-decoration: none; color: #e2e2e2;">Resistor Color Code Calculator </a>
+      <a href="/index.html" style="text-decoration: none; color: #e2e2e2;"><b>Resistor Hub</b></a>
         
     </header>
     
    <div id="band-name">
        
-       <p><a href="./3band.html" style="text-decoration: none;">3/4 Band Resistor Color Code Calculator</a></p>
-    
-    <img src="resistor2.png" alt="" height="50px" width="50px">
-    <img src="resistor1.png" alt="" height="50px" width="50px">
-    <img src="resistor2.png" alt="" height="50px" width="50px">
-    <img src="resistor1.png" alt="" height="50px" width="50px">
-    <img src="resistor2.png" alt="" height="50px" width="50px">
-    <img src="resistor1.png" alt="" height="50px" width="50px">
-    <img src="resistor2.png" alt="" height="50px" width="50px">
-   
-  <p><a href="./5band.html" style="text-decoration: none;"> &nbsp;&nbsp;5 Band Resistor Color Code Calculator </a></p>
+       <p><a href="/band3.html" style="text-decoration: none;">3/4 Band Resistor Color Code Calculator</p>  <br><br>
+  <p><a href="/band5.html" style="text-decoration: none;"> &nbsp;&nbsp;5 Band Resistor Color Code Calculator </a></p>
   
   
   </div>
@@ -104,11 +109,69 @@
         });
     }
   </script>
+  <footer class="footer">
+    <button id="btnInstall">Install App</button>
+    
+  </footer>
 
-    <div id="installContainer">
-  <button id="btnInstall" style="display: none;">Install App</button>
-    </div>
+  <script>
+      
+      document.addEventListener('DOMContentLoaded', () => {
+  const footer = document.querySelector('.footer');
+  const btnInstall = document.getElementById('btnInstall');
+  let deferredInstallPrompt;
 
-  <script src="install.js"></script>
+  // Check if the app is running as a PWA
+  const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+  // If the app is installed, hide the install button and update footer text
+  if (isPWA || localStorage.getItem('pwaInstalled') === 'true') {
+    if (footer) {
+      footer.innerHTML = `
+        <p>&nbsp;Copyright &nbsp;&copy;&nbsp;2024-2025 &nbsp;&nbsp;&nbsp;Resistor Calculator</p>
+      `;
+    }
+    if (btnInstall) {
+      btnInstall.style.display = 'none'; // Hide the install button
+    }
+  }
+
+  // Listen for 'beforeinstallprompt' to save the install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    console.log('Install prompt saved');
+    if (btnInstall) {
+      btnInstall.style.display = 'block'; // Show the install button
+    }
+  });
+
+  // Listen for install button click
+  btnInstall.addEventListener('click', () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then((choice) => {
+        if (choice.outcome === 'accepted') {
+          console.log('User accepted the installation');
+          btnInstall.style.display = 'none';
+          localStorage.setItem('pwaInstalled', 'true'); // Mark the app as installed in localStorage
+        } else {
+          console.log('User dismissed the installation');
+        }
+      });
+    } else {
+      alert('The installation prompt is not available at the moment.');
+    }
+  });
+
+  // Listen for the 'appinstalled' event and update localStorage
+  window.addEventListener('appinstalled', () => {
+    console.log('App installed, hiding the button');
+    btnInstall.style.display = 'none';
+    localStorage.setItem('pwaInstalled', 'true');
+  });
+});
+      
+  </script>
 </body>
-  </html>
+</html>
