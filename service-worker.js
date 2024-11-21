@@ -1,16 +1,18 @@
-const CACHE_NAME = "resistor-calculator-cache-v1.2";
+const CACHE_NAME = "resistor-calculator-cache-v1.2.1";
 const urlsToCache = [
   "./", // Main page
-  "./index.html", // Your main site page
-  "./install.js",
-  "./5band.html", // Link to 5-band calculator
+  "./index.html", // Main site page
   "./3band.html", // Link to 3-band calculator
+  "./5band.html", // Link to 5-band calculator
+  "./install.js", // Install button script
   "./manifest.json",
-  "./icon-192x192.png",
-  "./icon-512x512.png"
+  "./icon-192x192.png", // App icon
+  "./icon-512x512.png", // App icon
+  "./resistor1.png",
+  "./resistor2.png",
 ];
 
-// Install Service Worker
+// Install Service Worker and Cache Resources
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -20,33 +22,22 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Fetch and Cache Resources
+// Fetch and Serve Cached Resources
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Return cached response if found, or fetch from network
-      return (
-        response ||
-        fetch(event.request)
-          .then((networkResponse) => {
-            // Cache the fetched resource for future use
-            return caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, networkResponse.clone());
-              return networkResponse;
-            });
-          })
-          .catch(() => {
-            // Fallback for offline or error scenarios
-            if (event.request.mode === "navigate") {
-              return caches.match("./index.html"); // Offline fallback
-            }
-          })
-      );
+      // Serve cached file or fetch from network
+      return response || fetch(event.request).catch(() => {
+        // If offline and the file isn't cached, serve a fallback (like index.html)
+        if (event.request.mode === "navigate") {
+          return caches.match("./index.html");
+        }
+      });
     })
   );
 });
 
-// Activate Service Worker
+// Activate Service Worker and Clean Up Old Caches
 self.addEventListener("activate", (event) => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
