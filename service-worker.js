@@ -1,7 +1,7 @@
-const CACHE_NAME = "resistor-calculator-cache-v1.1";
+const CACHE_NAME = "resistor-calculator-cache-v1.2";
 const urlsToCache = [
   "./", // Main page
-  "./index.html",// Your main site page
+  "./index.html", // Your main site page
   "./install.js",
   "./5band.html", // Link to 5-band calculator
   "./3band.html", // Link to 3-band calculator
@@ -24,7 +24,24 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+      // Return cached response if found, or fetch from network
+      return (
+        response ||
+        fetch(event.request)
+          .then((networkResponse) => {
+            // Cache the fetched resource for future use
+            return caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            });
+          })
+          .catch(() => {
+            // Fallback for offline or error scenarios
+            if (event.request.mode === "navigate") {
+              return caches.match("./index.html"); // Offline fallback
+            }
+          })
+      );
     })
   );
 });
