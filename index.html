@@ -127,9 +127,7 @@
   // If the app is installed, hide the install button and update footer text
   if (isPWA || localStorage.getItem('pwaInstalled') === 'true') {
     if (footer) {
-      footer.innerHTML = `
-        <p>&nbsp;Copyright &nbsp;&copy;&nbsp;2024-2025 &nbsp;&nbsp;&nbsp;Resistor Calculator</p>
-      `;
+      footer.innerHTML = ``;
     }
     if (btnInstall) {
       btnInstall.style.display = 'none'; // Hide the install button
