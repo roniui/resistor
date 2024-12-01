@@ -1,4 +1,4 @@
-const CACHE_NAME = 'resistor-hub-cache-v3'; // Updated cache version
+const CACHE_NAME = 'resistor-hub-cache-v3.1'; // Updated to v3 on 2024-12-01
 const urlsToCache = [
   "/resistor/index.html",
   "/resistor/3band.html",
@@ -14,20 +14,23 @@ self.addEventListener('install', (event) => {
   self.skipWaiting(); // Force the new service worker to take control immediately
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache');
+      console.log('Opened cache and caching assets...');
       return cache.addAll(urlsToCache);
     })
   );
 });
 
-// Fetch event - always try to fetch the latest content first, fallback to cache if network fails
+// Fetch event - try network, fallback to cache
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') {
+    return; // Skip non-GET requests
+  }
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Check if we received a valid response (status 200 and type 'basic')
         if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response; // If invalid, don't cache
+          return response; // Don't cache opaque or invalid responses
         }
 
         // Clone and cache the response if it's valid
@@ -38,9 +41,14 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(() => {
-        // Return cached index.html if network fails
+        // Fallback to cache
         return caches.match(event.request).then((cachedResponse) => {
-          return cachedResponse || caches.match('/resistor/index.html');
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          if (event.request.mode === 'navigate') {
+            return caches.match('/resistor/index.html'); // Offline fallback
+          }
         });
       })
   );
@@ -54,7 +62,8 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (!cacheWhitelist.includes(cacheName)) {
-            return caches.delete(cacheName); // Delete outdated caches
+            console.log(`Deleting old cache: ${cacheName}`);
+            return caches.delete(cacheName);
           }
         })
       );
