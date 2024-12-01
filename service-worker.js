@@ -1,4 +1,4 @@
-const CACHE_NAME = 'resistor-calculator-cache-v1.3'; // Updated cache version
+const CACHE_NAME = 'resistor-hub-cache-v3'; // Updated cache version
 const urlsToCache = [
   "/resistor/index.html",
   "/resistor/3band.html",
