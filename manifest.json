@@ -7,7 +7,7 @@
       "name": "3/4 Band",
       "url": "/resistor/3band.html", 
       "icons": [{
-      "src": "/resistor/resistor3-4.png",
+      "src": "/resistor/icons/resistor3-4.png",
       "sizes": "192x192"
         }]             
       },
@@ -15,7 +15,7 @@
       "name": "5 Band",
       "url": "/resistor/5band.html", 
       "icons": [{
-      "src": "/resistor/resistor5.png",
+      "src": "/resistor/icons/resistor5.png",
       "sizes": "192x192"
         }]             
       }
@@ -26,12 +26,12 @@
   "theme_color": "#0c2c4a",
   "icons": [
     {
-      "src": "/resistor/icon192×192.png",
+      "src": "/resistor/icons/icon192×192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/resistor/icon512x512.png",
+      "src": "/resistor/icons/icon512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
