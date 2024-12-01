@@ -8,13 +8,13 @@
       "url": "/resistor/3band.html", 
       "icons": [{
       "src": "/resistor/icon192x192.png",
-      "sizes": "192x192"
+      "sizes": "512x512"
         }]             
       },{
       "name": "5 Band",
       "url": "/resistor/5band.html", 
       "icons": [{
-      "src": "/resistor/icon192x192.png",
+      "src": "/resistor/resistor1.png",
       "sizes": "192x192"
         }]             
       }
