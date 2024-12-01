@@ -7,10 +7,11 @@
       "name": "3/4 Band",
       "url": "/resistor/3band.html", 
       "icons": [{
-      "src": "/resistor/resistor3-4.png",
+      "src": "/resistor/resistor5.png",
       "sizes": "192×192"
         }]             
-      },{
+      },
+    {
       "name": "5 Band",
       "url": "/resistor/5band.html", 
       "icons": [{
