@@ -1,13 +1,14 @@
-const CACHE_NAME = 'resistor-hub-cache-v3.3'; // Cache version
+const CACHE_NAME = 'resistor-hub-cache-v3.4'; // Cache version
 const urlsToCache = [
   "/resistor/index.html",  // Ensure index.html is cached
   "/resistor/3band.html",  // 3-band page
   "/resistor/5band.html",  // 5-band page
-
-  "/resistor/icon-192x192.png",  // 192x192 icon
-  "/resistor/icon-512x512.png",  // 512x512 icon
-  "/resistor/resistor1.png",     // Example image
-  "/resistor/resistor2.png",     // Another image
+  "/resistor/style.css",   //main css 
+  "/resistor/install.js",  //Install button js
+  "/resistor/icons/icon-192x192.png",  // 192x192 icon
+  "/resistor/icons/icon-512x512.png",  // 512x512 icon
+  "/resistor/icons/resistor1.png",     // Example image
+  "/resistor/icons/resistor2.png",     // Another image
 ];
 
 // Install event - cache the assets
