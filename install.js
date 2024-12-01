@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       } else {
-        alert('The installation prompt is not available at the moment.');
+        alert('App already installed or, not supported by browser);
       }
     });
 
