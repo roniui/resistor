@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       } else {
-        alert('App already installed or, not supported by browser);
+        alert('App already installed or, not supported by browser');
       }
     });
 
