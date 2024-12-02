@@ -35,5 +35,25 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/resistor/screenshot1.jpg",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Home Screen"
+    },
+    {
+      "src": "/resistor/screenshot2.jpg",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Features Page"
+    },
+    {
+      "src": "/resistor/screenshot3.jpg",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Features Page"
+    }
   ]
 }
