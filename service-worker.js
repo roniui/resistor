@@ -1,4 +1,4 @@
-const CACHE_NAME = 'resistor-hub-cache-v3.3'; // Cache version
+const CACHE_NAME = 'resistor-hub-cache-v3.4'; // Cache version
 const urlsToCache = [
   "/resistor/index.html",  // Ensure index.html is cached
   "/resistor/3band.html",  // 3-band page
