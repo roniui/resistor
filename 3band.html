@@ -2,115 +2,500 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>3/4-Band Resistor Color Code Calculator</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #0c2c4a;
-            overflow: hidden;        }
-            
-      header {
-            width: 100%;
-            background-color: #0c2c4a;
-            padding: 10px;
-            text-align: center;
-            font-size: 24px;
-            color: #dfdfdf;
-            position: fixed;
-            top: 3px;
-            left: 0;
-                    }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #122028;
+    color: #f5f5f5;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0 20px;
+}
+
+header {
+    width: 100%;
+    background-color: #122028;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    color: #dfdfdf;
+    position: relative; /* Adjusted to not overlap content */
+    z-index: 1000;
+    height: 30px;
+}
+
+main {
+    flex: 1; /* Ensures content takes up available space */
+}
+
+.footer {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #dfdfdf;
+    font-size: 12px;
+    
+}
+
+#band5html {
+    width: 100%;
+    text-align: center;
+}
+
+#bandhtml {
+    background-color: #0c2c4a;
+    color: white;
+    border: 1px solid #f5ab29;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.color-selector {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    width: 120px;
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    border-radius: 50px;
+    background-color: #FBF0D9;
+    border: none;
+}
+
+.resistor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+    background: url('resbody.png') no-repeat center;
+    background-size: contain;
+}
+
+.resistor-body {
+    width: 200px;
+    height: 60px;
+    position: relative;
+}
+
+.band {
+    position: absolute;
+    width: 10px;
+    height: 51px;
+    border-radius: 3px;
+    top: 4.4px;
+}
+
+.band:nth-child(1) {
+    left: 40px;
+    background: brown;
+}
+
+.band:nth-child(2) {
+    left: 70px;
+    background: black;
+}
+
+.band:nth-child(3) {
+    left: 100px;
+    background: red;
+}
+
+.band:nth-child(4) {
+    left: 150px;
+    background: yellow;
+    height: 50px;
+    top: 5px;
+}
+
+#result {
+    font-weight: bold;
+    margin: 65px;
+}
         
-        #band5html {
-            
-            width: 90%;
-            background-color: #0c2c4a;
-            padding: 10px;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 14px;            
-            position: fixed;
-            bottom: 100px;
-            
-            
-            
-            
-        }
         
-        footer {
-            width: 100%;
-            background-color: #0c2c4a;
-            padding: 10px;
-            text-align: center;
-            font-size: 14px;
-            color: #dfdfdf;
-            position: fixed;
-            bottom: 3px;
-            left: 0;
-                    }
-        .calculator {
-            background-color: #e2e2e2;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                                    padding: 20px;
-            height: 80%;          
-            width: 400px;
-            text-align: center;
+          @media (max-width: 350px)
+    
+       {
+        .band {
+            height: 49px;
+            top: 6px;
         }
-        .color-selector {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-                     
-                    }
-        select {
-            width: 150px;
-            padding: 5px;
-            margin-right: 10px;
-            font-size: 14px;
-            border-radius: 50px;
-        }
-        .color-box {
-            width: 80px;
-            height: 30px;
-            border: 1px solid #000;
-            background-color: white;
-            border-radius: 50px;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
+        .band:nth-child(4) {
             
+            height: 47px;           
+            top: 7px;
+        }
+        }   
+     
+        
+    @media (max-width: 330px)
+    
+       {
+        .band {
+            height: 46px;
+            top: 7px;
+        }
+        .band:nth-child(4) {
+            
+            height: 44px;           
+            top: 8px;
+        }
+        }
+     
+  
+     @media (max-width: 315px)
+    
+       {
+        .band {
+            height: 44px;
+            top: 8px;
+        }
+        .band:nth-child(4) {
+            
+            height: 42px;           
+            top: 9px;
+        }
         }
         
         
-        .calculate {
+        @media (max-width: 300px)
+    
+       {
+        .band {
+            height: 42px;
+            top: 9px;
+        }
+        .band:nth-child(4) {
             
-            border-radius: 50px;
-           font-size: 18px;        }
+            height: 40px;           
+            top: 10px;
+        }
+        }
+        
+        @media (max-width: 290px)
+    
+       {
+        .band:nth-child(2){
+            height: 41px;
+            top: 9px;
+        }
+        .band:nth-child(3) {
+            
+            height: 41px;           
+            top: 9px;
+        }
+        }
+        
+      @media (max-width: 280px)
+    
+       {
+        .band:nth-child(2){
+            height: 40px;
+            top: 9.5px;
+        }
+        .band:nth-child(3) {
+            
+            height: 40px;           
+            top: 9.5px;
+        }
+        }  
+        
+        @media (max-width: 270px)
+    
+       {
+        .band:nth-child(2){
+            height: 38px;
+            top: 10px;
+        }
+        .band:nth-child(3) {
+            
+            height: 38px;           
+            top: 10px;
+        }
+        }  
+        
+        @media (max-width: 260px)
+    
+       {
+        .band:nth-child(2){
+            height: 38px;
+            top: 10px;
+        }
+        .band:nth-child(3) {
+            
+            height: 38px;           
+            top: 10px;
+        }
+        }  
+        
+        @media (max-width: 250px)
+    
+       {
+        .band:nth-child(1){
+            height: 40px;
+            top: 10px;
+        }
+        .band:nth-child(2) {
+            
+            height: 36px;           
+            top: 11px;
+        }
+         .band:nth-child(3) {
+            
+            height: 36px;           
+            top: 11px;
+        }
+         .band:nth-child(4) {
+            
+            height: 39px;           
+            top: 10px;
+        }
+        }  
+        
+        @media (max-width: 240px)
+    
+       {
+       .band:nth-child(1) {
+    height: 39px;
+}
+
+.band:nth-child(2) {
+    height: 35px;
+}
+
+.band:nth-child(3) {
+    height: 35px;
+}
+
+.band:nth-child(4) {
+    left: 145px;
+    height: 39px;
+    }
+
+        }  
+        
+        /* Hide the warning by default */
+.small-screen-warning {
+    display: none;
+    background-color: #ffcccc;
+    color: #800000;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+/* Show the warning if the screen is smaller than 240px */
+@media (max-width: 250px) {
+    .small-screen-warning {
+        display: block;  /* Show the message */
+    }
+    main {
+        display: none;
+    }
+    .footer {
+        display: none;
+    }
+    #band5html {
+        display: none;   
+    }
+    
+    }
+    
+    
+    .wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    z-index: 2;
+    background: linear-gradient(-135deg, #F79F79, #F79F79);
+    clip-path: circle(0px at calc(100% - 45px) 45px);
+    transition: all 0.4s ease-in-out;
+}
+
+#active:checked ~ .wrapper {
+    clip-path: circle(5%);
+}
+
+#active:checked ~ .menu-btn {
+    color: #ff000a;
+}
+
+#active:checked ~ .menu-btn i:before {
+    content: "\f00d";
+}
+
+/* New Navigation Bar CSS */
+.nav-overlay {
+    position: fixed;
+    top: 0px;
+    right: -330px; /* Hide off-screen initially */
+    height: 100vh;
+    width: 320px; /* Adjust width as needed */
+    background-color: #0a1419e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;  
+    transition: right 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.nav-links {
+    list-style: none;
+    text-align: center;
+    
+}
+
+.nav-links li {
+    margin-top: 60px;
+    
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #2b43ff;
+    background-color: #FBF0D9;
+    padding: 5px;   
+    border-radius: 20px;
+}
+
+#menu-toggle {
+    display: none;
+    
+}
+
+.menu-icon {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    z-index: 2;
+}
+
+.menu-icon span,
+.menu-icon span::before,
+.menu-icon span::after {
+    display: block;
+    background-color: white;
+    height: 3px;
+    width: 30px;
+    position: absolute;
+    transition: all 0.3s ease;
+   
+}
+
+.menu-icon span::before {
+    content: '';
+    top: -8px;
+}
+
+.menu-icon span::after {
+    content: '';
+    top: 8px;
+}
+
+
+    .menu-icon {
+        display: block;
+           }
+
+    #menu-toggle:checked ~ .nav-overlay {
+        right: 0;
+    }
+
+    #menu-toggle:checked + .menu-icon span {
+        background: transparent;
+    }
+
+    #menu-toggle:checked + .menu-icon span::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+
+    #menu-toggle:checked + .menu-icon span::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+ #btnInstall {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #122028;
+  background-color: #silver;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 10%;
+  left: 35%;
+  
+}
     </style>
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     
     <header>
- <b><img src="icon512×512.png" alt="" style="position: absolute; height: 36px; width: 36px; left: 25px; top: 7px;" > Resistor Hub</b>
-        
-        
+         <b>Resistor Hub</b>
+        <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon"><span></span></label>
+            <div class="nav-overlay">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resistor/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="../resistor/about.html">About</a></li>
+                    <li><a href="mailto:developers.service.web@gmail.com?subject=Resistor%20Hub/<write%20your%20mail%20subject%20here>&body=Resistor%20Hub.%20%20Do%20not%20delete%20these%20texts. " style="text-decoration: none;""">Contact</a></li>
+                    <li><button id="btnInstall">Install App</button></li>
+                </ul>
+            </div>
     </header>
+    
+    <div class="small-screen-warning">
+    This page is best viewed on devices with a screen width of 240px or larger.
+</div>
+    <main>
     <div class="calculator">
         <h3>3/4-Band Resistor Color Code Calculator</h3>
+        
+        <div class="resistor">
+            
+            <div class="resistor-body">
+              
+                <div class="band" id="band1Resistor"></div>
+                <div class="band" id="band2Resistor"></div>
+                <div class="band" id="band3Resistor"></div>
+                <div class="band" id="band4Resistor"></div>
+            </div>
+        </div>
         
         <!-- Band 1 Selector -->
         <div class="color-selector">
             <label>Band 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <select id="band1" onchange="updateColor('band1', 'colorBox1')">
+            <select id="band1" onchange="updateColor('band1'); calculateResistance();">
                 <option value="1" data-color="#663200">Brown (1)</option>
                 <option value="2" data-color="red">Red (2)</option>
                 <option value="3" data-color="#FF8C00">Orange (3)</option>
@@ -121,13 +506,12 @@
                 <option value="8" data-color="gray">Gray (8)</option>
                 <option value="9" data-color="white">White (9)</option>
             </select>
-            <div id="colorBox1" class="color-box"></div>
         </div>
         
         <!-- Band 2 Selector -->
         <div class="color-selector">
             <label>Band 2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <select id="band2" onchange="updateColor('band2', 'colorBox2')">
+            <select id="band2" onchange="updateColor('band2'); calculateResistance();">
                 <option value="0" data-color="black">Black (0)</option>
                 <option value="1" data-color="#663200">Brown (1)</option>
                 <option value="2" data-color="red">Red (2)</option>
@@ -139,13 +523,12 @@
                 <option value="8" data-color="gray">Gray (8)</option>
                 <option value="9" data-color="white">White (9)</option>
             </select>
-            <div id="colorBox2" class="color-box"></div>
         </div>
 
         <!-- Multiplier Selector -->
         <div class="color-selector">
             <label>Multiplier: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <select id="multiplier" onchange="updateColor('multiplier', 'colorBox3')">
+            <select id="multiplier" onchange="updateColor('multiplier'); calculateResistance();">
                 <option value="1" data-color="black">Black (×1 Ω)</option>
                 <option value="10" data-color="#663200">Brown (×10 Ω)</option>
                 <option value="100" data-color="red">Red (×100 Ω)</option>
@@ -157,43 +540,47 @@
                 <option value="0.1" data-color="gold">Gold (×0.1 Ω)</option>
                 <option value="0.01" data-color="silver">Silver (×0.01 Ω)</option>
             </select>
-            <div id="colorBox3" class="color-box"></div>
         </div>
 
         <!-- Tolerance Selector -->
         <div class="color-selector">
             <label>Tolerance: &nbsp;&nbsp;&nbsp;</label>
-            <select id="tolerance" onchange="updateColor('tolerance', 'colorBox4')">
-                <option value="none" data-color="white">None/Absent</option>
+            <select id="tolerance" onchange="updateColor('tolerance'); calculateResistance();">
+                <option value="none" data-color="#e9ddaf">None/Absent</option>
                 <option value="gold" data-color="gold">Gold (±5%)</option>
                 <option value="silver" data-color="silver">Silver (±10%)</option>
             </select>
-            <div id="colorBox4" class="color-box"></div>
         </div>
+
         
-        <button class="calculate", onclick="calculateResistance()">Calculate</button>
         
         <div class="result" id="result"></div>
     </div>
+</main>
+    <div id="band5html"><a href="/resistor/5band.html">
+        <button id="bandhtml">5 Band Resistor Color Code Calculator</button>
+    </a></div>
+       
+    <div class="footer">© 2024-25 Resistor Hub. All rights reserved.<br>Last Updated: 01/01/2025 16:31:29 IST</div>
 
     <script>
-        // Update the color of the box beside the dropdown
-        function updateColor(selectId, boxId) {
+        function updateColor(selectId) {
             const select = document.getElementById(selectId);
             const selectedOption = select.options[select.selectedIndex];
             const color = selectedOption.getAttribute('data-color');
-            document.getElementById(boxId).style.backgroundColor = color;
+
+            // Update the resistor bands dynamically
+            if (selectId === 'band1') {
+                document.getElementById('band1Resistor').style.backgroundColor = color;
+            } else if (selectId === 'band2') {
+                document.getElementById('band2Resistor').style.backgroundColor = color;
+            } else if (selectId === 'multiplier') {
+                document.getElementById('band3Resistor').style.backgroundColor = color;
+            } else if (selectId === 'tolerance') {
+                document.getElementById('band4Resistor').style.backgroundColor = color;
+            }
         }
 
-        // Automatically update colors on page load
-        function initializeColors() {
-            updateColor('band1', 'colorBox1');
-            updateColor('band2', 'colorBox2');
-            updateColor('multiplier', 'colorBox3');
-            updateColor('tolerance', 'colorBox4');
-        }
-
-        // Calculate the resistance
         function calculateResistance() {
             const band1 = parseInt(document.getElementById('band1').value);
             const band2 = parseInt(document.getElementById('band2').value);
@@ -207,16 +594,24 @@
             const upperLimit = resistanceValue * (1 + toleranceValue);
 
             let ohms = `${resistanceValue.toFixed(2)} Ω`;
-            let kiloohms = `${(resistanceValue / 1000).toFixed(2)} kΩ`;
+            let kiloohms = `${(resistanceValue / 1000).toFixed(2)} kΩ `;
 
-            document.getElementById('result').textContent = `Resistance: ${ohms} (${kiloohms}) ±${(toleranceValue * 100).toFixed(0)}% [${lowerLimit.toFixed(2)} Ω - ${upperLimit.toFixed(2)} Ω]`;
+            document.getElementById('result').innerHTML = `
+    Resistance: ${ohms} ±${(toleranceValue * 100).toFixed(0)}%<br><br>or, ${kiloohms}±${toleranceValue * 100}%<br><br>
+     Range: ${lowerLimit.toFixed(2)} Ω - ${upperLimit.toFixed(2)} Ω
+`;
         }
 
-        // Initialize the color boxes on page load
-        window.onload = initializeColors;    
+        // Initialize the resistor colors and result on page load
+        window.onload = function() {
+            updateColor('band1');
+            updateColor('band2');
+            updateColor('multiplier');
+            updateColor('tolerance');
+            calculateResistance(); // Automatically calculate the resistance on load
+        };
     </script>
-    <div id="band5html"> <a href="/resistor/5band.html" style="text-decoration: none; color: #dfdfdf;">5-Band Resistor Color Code Calculator</a> </div>
-<footer>    
-    © 2024 Resistor Hub. All rights reserved.<br> <br> Last Updated: 21/09/2024 22:26:42 IST</footer>
+    <script src="/resistor/install.js">      
+                </script>
 </body>
 </html>
