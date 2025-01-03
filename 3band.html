@@ -610,30 +610,75 @@ select {
             updateColor('tolerance');
             calculateResistance(); // Automatically calculate the resistance on load
         };
-    
-    let deferredPrompt;
+        
+        
+       document.addEventListener('DOMContentLoaded', () => {
+  const footer = document.querySelector('.footer');
+  const btnInstall = document.getElementById('btnInstall');
+  let deferredInstallPrompt;
 
-    // Listen for the beforeinstallprompt event
-    window.addEventListener('beforeinstallprompt', (event) => {
-      event.preventDefault(); // Prevent the default install dialog
-      deferredPrompt = event; // Save the event for later use
-      document.getElementById('installButton').style.display = 'block'; // Show the install button
-    });
+  // Check if the app is running as a PWA
+  const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-    // Handle install button click
-    document.getElementById('installButton').addEventListener('click', () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt(); // Show the install prompt
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          } else {
-            console.log('User dismissed the install prompt');
-          }
-          deferredPrompt = null; // Clear the prompt reference
+  // If the app is installed, hide the install button and update footer text
+  if (isPWA || localStorage.getItem('pwaInstalled') === 'true') {
+    if (footer) {
+      footer.innerHTML = ``;
+    }
+    if (btnInstall) {
+      btnInstall.style.display = 'none'; // Hide the install button
+    }
+  }
+  
+
+  // Listen for 'beforeinstallprompt' to save the install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    console.log('Install prompt saved');
+    if (btnInstall) {
+      btnInstall.style.display = 'block'; // Show the install button
+    }
+  });
+
+  // Listen for install button click
+  btnInstall.addEventListener('click', () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then((choice) => {
+        if (choice.outcome === 'accepted') {
+          console.log('User accepted the installation');
+          btnInstall.style.display = 'none';
+          localStorage.setItem('pwaInstalled', 'true'); // Mark the app as installed in localStorage
+        } else {
+          console.log('User dismissed the installation');
+        }
+      });
+    } else {
+      alert('The installation prompt is not available at the moment.');
+    }
+  });
+
+  // Listen for the 'appinstalled' event and update localStorage
+  window.addEventListener('appinstalled', () => {
+    console.log('App installed, hiding the button');
+    btnInstall.style.display = 'none';
+    localStorage.setItem('pwaInstalled', 'true');
+  });
         });
-      }
-    });
+        
+        
+        if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/resistor/service-worker.js")
+        .then((registration) => {
+          console.log("Service Worker registered with scope:", registration.scope);
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
     </script>
+    
 </body>
 </html>
