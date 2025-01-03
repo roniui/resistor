@@ -610,8 +610,30 @@ select {
             updateColor('tolerance');
             calculateResistance(); // Automatically calculate the resistance on load
         };
+    
+    let deferredPrompt;
+
+    // Listen for the beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault(); // Prevent the default install dialog
+      deferredPrompt = event; // Save the event for later use
+      document.getElementById('installButton').style.display = 'block'; // Show the install button
+    });
+
+    // Handle install button click
+    document.getElementById('installButton').addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt(); // Show the install prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null; // Clear the prompt reference
+        });
+      }
+    });
     </script>
-    <script src="/resistor/install.js">      
-                </script>
 </body>
 </html>
