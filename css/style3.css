@@ -71,7 +71,7 @@ select {
     align-items: center;
     justify-content: center;
     margin: 30px 0;
-    background: url('/icons/resbody.png') no-repeat center;
+    background: url('/resistor/icons/resbody.png') no-repeat center;
     background-size: contain;
 }
 
