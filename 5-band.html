@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>5-Band Resistor Color Code Calculator</title>
+<link rel="manifest" href="/resistor/manifest.json">
+<link rel="stylesheet" href="/css/style5.css">
+<link rel="stylesheet" href="/css/navbar.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/resistor3-4.png">
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    
+    <header>
+<b>Resistor Hub</b>
+        
+       <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon"><span></span></label>
+            <div class="nav-overlay">
+                <ul class="nav-links">
+                    <li><a href="/resistor/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/resistor/about.html">About</a></li>
+                    <li><a href="mailto:developers.service.web@gmail.com?subject=Resistor%20Hub/<write%20your%20mail%20subject%20here>&body=Resistor%20Hub.%20%20Do%20not%20delete%20these%20texts. " style="text-decoration: none;""">Contact</a></li>
+  <button id="btnInstall">Install App</button>
+    
+                </ul>
+            </div> 
+    </header>
+    <main>
+    <div class="calculator">
+       
+        <div class="button-container">
+        <div id="bands"><a href="/resistor/index.html">
+        <button id="bandhtml">3/4 Band Resistor</button>
+    </a></div>
+        
+        <div id="bands">
+        <button id="bandhtml" style="background-color: #122028; border: 1px solid #70ff4086;">5 Band Resistor</button>
+    </div>
+        </div>
+ <div class="resistor">
+            
+            <div class="resistor-body">
+              
+                <div class="band" id="band1Resistor"></div>
+                <div class="band" id="band2Resistor"></div>
+                <div class="band" id="band3Resistor"></div>
+                <div class="band" id="band4Resistor"></div>
+                <div class="band" id="band5Resistor"></div>
+            </div>
+        </div>
+        <!-- Band 1 Selector -->
+        <div class="color-selector">
+            <label>Band 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="band1" onchange="updateColor('band1'); calculateResistance();">
+                <option value="1" data-color="#663200">Brown (1)</option>
+                <option value="2" data-color="red">Red (2)</option>
+                <option value="3" data-color="#FF8C00">Orange (3)</option>
+                <option value="4" data-color="yellow">Yellow (4)</option>
+                <option value="5" data-color="#00FF40">Green (5)</option>
+                <option value="6" data-color="blue">Blue (6)</option>
+                <option value="7" data-color="#720e9e">Violet (7)</option>
+                <option value="8" data-color="gray">Gray (8)</option>
+                <option value="9" data-color="white">White (9)</option>
+            </select>
+        </div>
+        
+        <!-- Band 2 Selector -->
+        <div class="color-selector">
+            <label>Band 2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="band2" onchange="updateColor('band2'); calculateResistance();">
+                <option value="0" data-color="black">Black (0)</option>
+                <option value="1" data-color="#663200">Brown (1)</option>
+                <option value="2" data-color="red">Red (2)</option>
+                <option value="3" data-color="#FF8C00">Orange (3)</option>
+                <option value="4" data-color="yellow">Yellow (4)</option>
+                <option value="5" data-color="#00FF40">Green (5)</option>
+                <option value="6" data-color="blue">Blue (6)</option>
+                <option value="7" data-color="#720e9e">Violet (7)</option>
+                <option value="8" data-color="gray">Gray (8)</option>
+                <option value="9" data-color="white">White (9)</option>
+            </select>
+        </div>
+
+<div class="color-selector">
+            <label>Band 3: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="band3" onchange="updateColor('band3'); calculateResistance();">
+                <option value="0" data-color="black">Black (0)</option>
+                <option value="1" data-color="#663200">Brown (1)</option>
+                <option value="2" data-color="red">Red (2)</option>
+                <option value="3" data-color="#FF8C00">Orange (3)</option>
+                <option value="4" data-color="yellow">Yellow (4)</option>
+                <option value="5" data-color="#00FF40">Green (5)</option>
+                <option value="6" data-color="blue">Blue (6)</option>
+                <option value="7" data-color="#720e9e">Violet (7)</option>
+                <option value="8" data-color="gray">Gray (8)</option>
+                <option value="9" data-color="white">White (9)</option>
+            </select>
+        </div>
+
+        <!-- Multiplier Selector -->
+        <div class="color-selector">
+            <label>Multiplier: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <select id="multiplier" onchange="updateColor('multiplier'); calculateResistance();">
+                <option value="1" data-color="black">Black (×1 Ω)</option>
+                <option value="10" data-color="#663200">Brown (×10 Ω)</option>
+                <option value="100" data-color="red">Red (×100 Ω)</option>
+                <option value="1000" data-color="#FF8C00">Orange (×1 kΩ)</option>
+                <option value="10000" data-color="yellow">Yellow (×10 kΩ)</option>
+                <option value="100000" data-color="#00FF40">Green (×100 kΩ)</option>
+                <option value="1000000" data-color="blue">Blue (×1 MΩ)</option>
+                <option value="10000000" data-color="#720e9e">Violet (×10 MΩ)</option>
+                <option value="0.1" data-color="gold">Gold (×0.1 Ω)</option>
+                <option value="0.01" data-color="silver">Silver (×0.01 Ω)</option>
+            </select>
+        </div>
+
+        <!-- Tolerance Selector -->
+        <div class="color-selector">
+            <label>Tolerance: &nbsp;&nbsp;&nbsp;</label>
+            <select id="tolerance" onchange="updateColor('tolerance'); calculateResistance();">
+                <option value="1" data-color="#663200">Brown (±1%)</option>
+                <option value="2" data-color="red">Red (±2%)</option>
+                <option value="0.5" data-color="#00FF40">Green (±0.5%)</option>
+                <option value="0.25" data-color="blue">Blue (±0.25%)</option>
+                <option value="0.1" data-color="#720e9e">Violet (±0.1%)</option>
+                <option value="0.05" data-color="gray">Gray (±0.05%)</option>
+                <option value="5" data-color="gold">Gold (±5%)</option>
+                <option value="10" data-color="silver">Silver (±10%)</option>
+            </select>
+            
+        </div>
+
+
+        <div class="result" id="result"></div>
+    </div>
+</main>       
+  <div class="footer"> © 2024-2025 Resistor Hub. All rights reserved.<br>Last Updated: 01/01/2025 16:31:29 IST</div>
+  
+  <script src="/js/5-band.js"></script>
+    <script src="/js/install.js"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/resistor/service-worker.js")
+        .then((registration) => {
+          console.log("Service Worker registered with scope:", registration.scope);
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
+  </script>
+</body>
+    </html>
