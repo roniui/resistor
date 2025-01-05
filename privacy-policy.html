@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    
+    <title>3/4-Band Resistor Color Code Calculator</title>
+   <link rel="manifest" href="/resistor/manifest.json">
+
+<link rel="stylesheet" href="/resistor/css/navbar.css">
+<link rel="stylesheet" href="/resistor/css/responsive.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/resistor/icons/resistor3-4.png">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #122028;
+    color: #f5f5f5;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 93vh;
+    padding: 0 20px;
+}
+
+header {
+    width: 100%;
+    background-color: #122028;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    color: #dfdfdf;
+    position: relative; /* Adjusted to not overlap content */
+    z-index: 1000;
+    height: 30px;
+}
+
+main {
+    flex: 1; /* Ensures content takes up available space */
+}
+
+.footer {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #dfdfdf;
+    font-size: 12px;
+    
+}
+
+</style>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    
+    <header>
+         <b>Resistor Hub</b>
+        <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon"><span></span></label>
+            <div class="nav-overlay">
+                <ul class="nav-links"> 
+                    <li><a href="/">Home</a></li>                   
+                    <li><a href="/resistor/privacy-policy.html">Privacy Policy</a></li>                    
+                    <li><a href="mailto:developers.service.web@gmail.com?subject=Resistor%20Hub/<write%20your%20mail%20subject%20here>&body=Resistor%20Hub.%20%20Do%20not%20delete%20these%20texts. " style="text-decoration: none;">Contact</a></li>
+    <li><a href="https://github.com/ohmlaws/resistor/">Source Code @ <img src="/icons/github-mark-white.png" alt="Github" width="20px" height="20px"></img></a></li>
+            <div id="install">  <button id="btnInstall">Install App</button> </div>  </ul>
+            </div>
+    </header>
+    
+  <div class="small-screen-warning">
+    This page is best viewed on devices with a minimum width of 250px and height of 360px.
+</div>
+    <main>
+    <br><br><br>
+<h2 style="color: #ff7300;">Privacy Policy</h2>
+
+<p>We value your privacy and are committed to protecting your personal information.<br>No personal information is collected through this site.<br>We use cookies to enhance your experience, but you can control cookie preferences in your browser settings.</p> <p style="color: #ff1515c4">By using this site, you consent to the use of cookies.</p>
+<br><br><br><br><br><br>
+<p>If you have any questions about your privacy, please <a href="mailto:developers.service.web@gmail.com?subject=Resistor%20Hub/<write%20your%20mail%20subject%20here>&body=Resistor%20Hub.%20%20Do%20not%20delete%20these%20texts. " style="text-decoration: ; color: white;">contact</a> us.</p>
+
+        
+        
+      
+</main>
+    
+       
+    <div class="footer">© 2024-2025 Resistor Hub. All rights reserved.<br>Last Updated: 01/01/2025 16:31:29 IST</div>
+
+    <script src="/resistor/js/3-band.js"></script>
+    <script src="/resistor/js/install.js"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/resistor/service-worker.js")
+        .then((registration) => {
+          console.log("Service Worker registered with scope:", registration.scope);
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
+  </script>
+    
+</body>
+</html>
