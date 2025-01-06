@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    min-height: 100%;
+    min-height: 94vh;
     width: 100%;
     z-index: 2;
     background: linear-gradient(-135deg, #F79F79, #F79F79);
@@ -22,48 +22,60 @@
     content: "\f00d";
 }
 
-/* New Navigation Bar CSS */
+/* Navigation Bar CSS */
+
+
+
 .nav-overlay {
     position: fixed;
-    top: 0px;
-    right: -350px; /* Hide off-screen initially */
-    height: 100vh;
-    width: 350px; /* Adjust width as needed */
-    background-color: #112028f6;
+    top: 0;
+    right: -70vh; /* Initially hidden off-screen */
+    height: 100vh; /* Fixed height */
+    width: 50vh; /* Adjust width as needed */
+    background-color: #2f3a51;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    justify-content: flex-start;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;  
-    transition: right 0.3s ease-in-out;
+    transition: right 0.2s ease-in-out;
     z-index: 1;
+    padding: 20px 0; /* Add padding for better spacing */
+    overflow-y: auto; /* Enable scrolling for overflowing content */
 }
-
+/* Toggle class to bring the nav bar into view */
+.nav-overlay.active {
+    top: 0; /* Position it at the top */
+}
 .nav-links {
-    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Add consistent spacing between links */
     text-align: center;
-    
+    margin-top: 80px; 
+    margin-left: 20px;
+    padding: 0; 
+    list-style: none;
 }
 
 .nav-links li {
-    margin-top: 60px;
-    
+    margin: 0; /* Ensure no extra margins */
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 24px;
-    transition: color 0.3s ease;
+    font-size: 1.2rem; /* Responsive font size */
+    padding: 10px 20px; /* Add padding for clickable area */
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
 }
 
-.nav-links a:hover {
-    color: #2b43ff;
-    background-color: #FBF0D9;
-    padding: 5px;   
-    border-radius: 20px;
-}
+    .nav-links a {
+        font-size: 1rem; /* Adjust font size for small screens */
+        padding: 8px 16px;
+    }
 
 #menu-toggle {
     display: none;
@@ -74,8 +86,8 @@
     display: block;
     cursor: pointer;
     position: absolute;
-    top: 25px;
-    left: 15px;
+    top: 32px;
+    right: 45px;
     z-index: 2;
 }
 
@@ -94,11 +106,13 @@
 .menu-icon span::before {
     content: '';
     top: -8px;
+    background-color: orangered;
 }
 
 .menu-icon span::after {
     content: '';
     top: 8px;
+    background-color: green;
 }
 
 
@@ -117,29 +131,27 @@
     #menu-toggle:checked + .menu-icon span::before {
         top: 0;
         transform: rotate(45deg);
+        background-color: orangered;
     }
 
     #menu-toggle:checked + .menu-icon span::after {
         top: 0;
         transform: rotate(-45deg);
+        background-color: orangered;
     }
     
     #btnInstall {
   padding: 10px 20px;
   font-size: 16px;
   color: #e2e2e2;
-  background-color: #007bff;
+  background-color: #0056b3;
   border: none;
   border-radius: 50px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  position: absolute;
-  bottom: 10%;
-  left: 35%;
-  
+  cursor: pointer;  
+  width: 120px; 
 }
 
-#btnInstall:hover {
-  background-color: #0056b3;
-  
-}         
+       
+#install{    
+    justify-content: center;
+}
