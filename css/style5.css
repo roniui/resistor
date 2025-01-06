@@ -6,14 +6,14 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    min-height: 93vh;
+    min-height: 100dvh;
     padding: 0 20px;
 }
 
 header {
     width: 100%;
     background-color: #122028;
-    padding: 10px;
+    padding-top: 20px;
     text-align: center;
     font-size: 24px;
     color: #dfdfdf;
