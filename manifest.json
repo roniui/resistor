@@ -31,5 +31,19 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+resistor",
+      "url": "/resistor/index.html?handler=%s"
+    },
+    {
+      "protocol": "web+resistor5band",
+      "url": "/resistor/5band.html?handler=%s"
+    },
+    {
+      "protocol": "web+resistorprivacy",
+      "url": "/resistor/privacy-policy.html?handler=%s"
+    }
   ]
 }
