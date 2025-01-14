@@ -35,11 +35,11 @@
   "protocol_handlers": [
     {
       "protocol": "web+resistor",
-      "url": "/resistor/index.html?handler=%s"
+      "url": "/resistor/?handler=%s"
     },
     {
       "protocol": "web+resistor5band",
-      "url": "/resistor/5band.html?handler=%s"
+      "url": "/resistor/5-band.html?handler=%s"
     },
     {
       "protocol": "web+resistorprivacy",
