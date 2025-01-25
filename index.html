@@ -10,19 +10,6 @@
 <link rel="stylesheet" href="/resistor/css/navbar.css">
 <link rel="stylesheet" href="/resistor/css/responsive.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/resistor/icons/resistor3-4.png">
-<style>
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255); /* Semi-transparent white background */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }</style>
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     
@@ -46,10 +33,6 @@
     <div class="small-screen-warning">
     This page is best viewed on devices with a screen width of 250px or larger.
 </div>
-    <div class="content">
-     <div id="loader">
-    <div class="loader"><span style="color: #ff7300; font-size: 30px;">Happy Birthday Legend</span><br><br><br><img src="/resistor/icons/netaji.png" alt="" style="height: 400px"><br><br><br<br><br><span style="color: #ff7300; font-size: 60px;">Jai</span><span style="color: #00ff2d; font-size: 60px;"> Hind</span></div>
-     </div>
     <main>
     <div class="calculator">
         <div class="button-container">
@@ -150,21 +133,6 @@
         .catch((error) => {
           console.error("Service Worker registration failed:", error);
         });
-    }
-                // Ensure loader stays visible for at least 2 seconds
-    window.addEventListener("load", function () {
-      const loader = document.getElementById("loader");
-      const content = document.querySelector(".content");
-
-      setTimeout(() => {
-        // Hide loader after a delay
-        loader.style.display = "none";
-
-        // Show content
-        content.style.display = "block";
-      }, 2000); // Delay of 2 seconds (2000ms)
-    });
-  </script>
-    
+    }    
 </body>
 </html>
