@@ -3,24 +3,26 @@
   "short_name": "ResistorHub",
   "description": "Hub for resistor calculators, including 3/4-band and 5-band.",
   "start_url": "/resistor/index.html",
-  "shortcuts": [{
+  "shortcuts": [
+    {
       "name": "3/4 Band Resistor",
-      "url": "/index.html?band=1", 
+      "url": "/resistor/index.html?band=1",
       "icons": [{
-      "src": "/resistor/icons/resistor3-4.png",
-      "sizes": "192x192"
-        }]             
-      },
+        "src": "/resistor/icons/resistor3-4.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }]             
+    },
     {
       "name": "5 Band Resistor",
-      "url": "/index.html?band=2", 
+      "url": "/resistor/index.html?band=2",
       "icons": [{
-      "src": "/resistor/icons/resistor5.png",
-      "sizes": "192x192"
-        }]             
-      }
-      
-      ],
+        "src": "/resistor/icons/resistor5.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }]             
+    }
+  ],
   "display": "standalone",
   "background_color": "#0c2c4a",
   "theme_color": "#0c2c4a",
@@ -35,7 +37,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+resistor",
-      "url": "/resistor/?handler=%s"
+      "url": "/resistor/index.html?handler=%s"
     },
     {
       "protocol": "web+resistor5band",
