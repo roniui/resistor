@@ -243,6 +243,18 @@
         .catch((error) => {
           console.error("Service Worker registration failed:", error);
         });
-    }    
+    }   
+        window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    const band = params.get("band");
+
+    if (band) {
+        const targetElement = document.getElementById(`bands-${band}`);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+};
+    </script>
 </body>
     </html>
