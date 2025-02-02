@@ -1,4 +1,4 @@
-const CACHE_NAME = 'resistor-hub-cache-v1.5'; // Cache version
+const CACHE_NAME = 'resistor-hub-cache-v1.6'; // Cache version
 const ASSETS = [
   '/resistor/index.html',       // 3/4 band page
   '/resistor/css/style3.css',    // styles
