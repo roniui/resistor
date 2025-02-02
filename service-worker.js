@@ -9,7 +9,7 @@ const ASSETS = [
   '/resistor/js/5-band.js',
   '/resistor/icons/icon512x512.png',  // 512x512 icon
   '/resistor/icons/resbody1.png',  // resistor image
-  '/resistor/icons/resbody1.png'
+  '/resistor/icons/resbody2.png'
 ];
 
 // Install event: Cache resources
