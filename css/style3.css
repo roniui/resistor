@@ -20,37 +20,41 @@ header {
     position: relative; /* Adjusted to not overlap content */
     z-index: 1000;
     height: 30px;
+    color: white;
+    text-decoration: none;
 }
 
-main {
+#main-1 {
     flex: 1; /* Ensures content takes up available space */
 }
 
 .footer {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    color: #dfdfdf;
-    font-size: 12px;
-    
+  text-align: center;
+  padding: 1rem;
+  font-size: 10px;
+  color: white;
+  text-decoration: white;
 }
-
-
-#bands {
-    width: 100%;
-    text-align: center;
-}
-
-#bandhtml {
-    background-color: #0c2c4a;
+.footer a {
     color: white;
-    border: 1px solid #f5ab29;
-    padding: 10px;
-    border-radius: 50px;
+    text-decoration: none;
     
 }
 
-.color-selector {
+#bands-1 {
+    width: 100%;
+    text-align: center;
+}
+
+#bandhtml-1 {
+    background-color: #0c2c4a;
+    color: white;      
+    text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #218b17;
+}
+
+.color-selector-1 {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -67,64 +71,89 @@ select {
     border: none;
 }
 
-.resistor {
+.resistor-1 {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 30px 0;
-    background: url('/resistor/icons/resbody.png') no-repeat center;
-    background-size: contain;
+    position: relative; /* Ensure it acts as a reference for absolute positioning */
 }
 
-.resistor-body {
+.resistor-body-1 {
     width: 200px;
     height: 60px;
     position: relative;
 }
 
-.band {
+.resistor-body-1::after {
+    content: "";
     position: absolute;
-    width: 10px;
-    height: 51px;
-    border-radius: 3px;
-    top: 4.4px;
+    top: -39%;
+    left: -31%;
+    width: 160%;
+    height: 160%;
+    background: url('/icons/resbody1.png') no-repeat center;
+    background-size: contain;
+    z-index: 10; /* Ensure it's above the bands */
+    pointer-events: none; /* Allow interaction with bands */
 }
 
-.band:nth-child(1) {
-    left: 40px;
-    background: brown;
+.band-1 {
+    position: absolute;
+    width: 15px;
+    height: 53px;
+    top: -2px;
+    border-radius: 1px;    z-index: 5; /* Lower than the image */
 }
 
-.band:nth-child(2) {
-    left: 70px;
-    background: black;
-}
+/* Band positioning */
+.band-1:nth-child(1) { left: 32px; background: brown; }
+.band-1:nth-child(2) { left: 53px; background: black; }
+.band-1:nth-child(3) { left: 78px; background: red; }
+.band-1:nth-child(4) { left: 145px; background: yellow; }
 
-.band:nth-child(3) {
-    left: 100px;
-    background: red;
-}
 
-.band:nth-child(4) {
-    left: 150px;
-    background: yellow;
-    height: 50px;
-    top: 5px;   
-
-    
-}
-
-#result {
+#result-1 {
     font-weight: bold;
     margin: 65px;
 }
-        
-        
-          
-    
-    
-.button-container {
-    display: flex; 
-    margin-top: 50px; 
+
+.button-container-1 {
+    display: flex;
+    margin-top: 50px;
     margin-bottom: 50px;
+}
+
+
+.small-screen-warning {
+    display: none;
+    background-color: #ffcccc;
+    color: #800000;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 100px;
+    border-radius: 5px;
+}
+
+@media (max-width: 250px) {
+    .small-screen-warning {
+        display: block;  /* Show the message */
+    }
+    main {
+        display: none;
+    }
+    .footer {
+        display: none;
+    }
+    #band5html {
+        display: none;   
+    }
+    
+    }        
+    
+    
+    html {
+    scroll-behavior: smooth;
     }
