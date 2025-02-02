@@ -80,7 +80,7 @@ select {
     left: -31%;
     width: 160%;
     height: 160%;
-    background: url('./icons/resbody2.png') no-repeat center;
+    background: url('../icons/resbody2.png') no-repeat center;
     background-size: contain;
     z-index: 10; /* Ensure it's above the bands */
     pointer-events: none; /* Allow interaction with bands */
