@@ -1,7 +1,6 @@
-const CACHE_NAME = 'resistor-hub-cache-v1.4'; // Cache version
+const CACHE_NAME = 'resistor-hub-cache-v1.5'; // Cache version
 const ASSETS = [
   '/resistor/index.html',       // 3/4 band page
-  '/resistor/5-band.html',       // 5-band page
   '/resistor/css/style3.css',    // styles
   '/resistor/css/style5.css', 
   '/resistor/css/navbar.css',
@@ -9,7 +8,8 @@ const ASSETS = [
   '/resistor/js/3-band.js',  // scripts
   '/resistor/js/5-band.js',
   '/resistor/icons/icon512x512.png',  // 512x512 icon
-  '/resistor/icons/resbody.png'  // resistor image
+  '/resistor/icons/resbody1.png',  // resistor image
+  '/resistor/icons/resbody1.png'
 ];
 
 // Install event: Cache resources
