@@ -58,6 +58,15 @@ function calculateResistance2() {
     updateColor2('multiplier-2');
     updateColor2('tolerance-2');
     calculateResistance2(); // For 5-band
-            
+
+    // Handle query parameters
     const params = new URLSearchParams(window.location.search);
+    const band = params.get("band");
+
+    if (band) {
+        const targetElement = document.getElementById(`bands-${band}`);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    }
 };
