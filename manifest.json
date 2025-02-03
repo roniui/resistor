@@ -6,7 +6,7 @@
   "shortcuts": [
     {
       "name": "3/4 Band Resistor",
-      "url": "/resistor/index.html?band=1",
+      "url": "/resistor/index.html",
       "icons": [{
         "src": "/resistor/icons/resistor3-4.png",
         "sizes": "192x192",
