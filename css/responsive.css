@@ -201,3 +201,11 @@
     }
     
     }        
+#statusDot {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: -60px;
+             }
