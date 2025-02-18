@@ -52,36 +52,40 @@
     calculateResistance2(); // For 5-band
 };
        
+    
     async function checkStatus() {
-        let statusText = document.getElementById("statusText");
         let statusDot = document.getElementById("statusDot");
 
         try {
+            // If offline, assume service worker is serving the page
+            if (!navigator.onLine) {
+                statusDot.style.backgroundColor = "orange"; // Offline (served from SW)
+                return;
+            }
+
             let response = await fetch(window.location.href, { cache: "no-store" });
 
-            if (response.headers.get("X-Service-Worker") === "true") {
-                // Page was served from service worker while online
-                statusText.innerText = "";
-                statusDot.style.backgroundColor = "orange";
+            // Check if the response has the Service Worker header
+            if (response.headers.get("X-Service-Worker") === "true" || navigator.serviceWorker.controller) {
+                statusDot.style.backgroundColor = "orange"; // Served from SW
             } else {
-                // Served directly from the internet
-                statusText.innerText = "";
-                statusDot.style.backgroundColor = "green";
+                statusDot.style.backgroundColor = "green"; // Served from network
             }
         } catch (error) {
-            // Likely offline, served from service worker
-            statusText.innerText = "";
-            statusDot.style.backgroundColor = "orange";
+            statusDot.style.backgroundColor = "crimson"; // Offline fallback
         }
     }
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.ready.then(() => {
-            checkStatus();
-        });
+        navigator.serviceWorker.ready.then(() => checkStatus());
+
+        // Update status when Service Worker takes control
+        navigator.serviceWorker.addEventListener('controllerchange', checkStatus);
     }
 
+    // Listen for network changes
     window.addEventListener('online', checkStatus);
     window.addEventListener('offline', checkStatus);
 
+    // Initial check
     checkStatus();
