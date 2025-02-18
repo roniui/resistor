@@ -58,6 +58,7 @@
         let statusDot = document.getElementById("statusDot");
 
         try {
+          statusDot.innerText = "";
             // If offline, assume service worker is serving the page
             if (!navigator.onLine) {
                 statusDot.style.backgroundColor = "crimson"; // Offline (served from SW)
