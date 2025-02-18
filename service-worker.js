@@ -1,15 +1,15 @@
-const CACHE_NAME = 'resistor-hub-cache-v1.6'; // Cache version
+const CACHE_NAME = 'resistor-hub-cache-v1.7'; // Cache version
 const ASSETS = [
-  '/resistor/index.html',       // 3/4 band page
-  '/resistor/css/style3.css',    // styles
-  '/resistor/css/style5.css', 
-  '/resistor/css/navbar.css',
-  '/resistor/css/responsive.css',
-  '/resistor/js/3-band.js',  // scripts
-  '/resistor/js/5-band.js',
-  '/resistor/icons/icon512x512.png',  // 512x512 icon
-  '/resistor/icons/resbody1.png',  // resistor image
-  '/resistor/icons/resbody2.png'
+    '/resistor/index.html',       // 3/4 band page
+    '/resistor/css/style3.css',    // styles
+    '/resistor/css/style5.css',
+    '/resistor/css/navbar.css',
+    '/resistor/css/responsive.css',
+    '/resistor/js/3-band.js',  // scripts
+    '/resistor/js/5-band.js',
+    '/resistor/icons/icon512x512.png',  // 512x512 icon
+    '/resistor/icons/resbody1.png',  // resistor image
+    '/resistor/icons/resbody2.png'
 ];
 
 // Install event: Cache resources
@@ -49,22 +49,37 @@ self.addEventListener('activate', (event) => {
 // Fetch event: Serve resources from cache or fetch from network
 self.addEventListener('fetch', (event) => {
     console.log('[Service Worker] Fetching:', event.request.url);
+
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
             if (cachedResponse) {
                 console.log('[Service Worker] Serving from cache:', event.request.url);
-                return cachedResponse; // Return from cache
+                
+                // Clone response and add custom header
+                return cachedResponse.blob().then((body) => {
+                    let headers = new Headers({
+                        'Content-Type': cachedResponse.headers.get('Content-Type') || 'text/html',
+                        'X-Service-Worker': 'true' // Custom header to indicate service worker response
+                    });
+
+                    return new Response(body, {
+                        status: cachedResponse.status,
+                        statusText: cachedResponse.statusText,
+                        headers: headers
+                    });
+                });
             }
+
             console.log('[Service Worker] Fetching from network:', event.request.url);
-            return fetch(event.request).then((response) => {
-                if (!response || response.status !== 200 || response.type !== 'basic') {
-                    return response; // Return the network response if it's invalid or not basic
+            return fetch(event.request).then((networkResponse) => {
+                if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+                    return networkResponse; // Return network response if invalid
                 }
-                // Optionally cache the response for future use
+
                 return caches.open(CACHE_NAME).then((cache) => {
                     console.log('[Service Worker] Caching new resource:', event.request.url);
-                    cache.put(event.request, response.clone());
-                    return response;
+                    cache.put(event.request, networkResponse.clone());
+                    return networkResponse;
                 });
             }).catch((error) => {
                 console.error('[Service Worker] Fetch failed:', error);
