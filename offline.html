@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops! No Internet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #122028;
+            color: #ffffff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .exclamation-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .exclamation {
+            width: 60px;
+            height: 60px;
+            background: #ffcc00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #121212;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        h1 {
+            font-size: 26px;
+            margin: 10px 0;
+            color: #ffcc00;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .retry-button {
+            background-color: #ff9800;
+            color: #121212;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .retry-button:hover {
+            background-color: #e68900;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="exclamation-wrapper">
+            <div class="exclamation">!</div>
+        </div>
+        <h1>Oops! No Internet Connection!</h1>
+        <p>Dude, head back to civilization—that’s where the connection is!</p>
+        <button class="retry-button" onclick="retryConnection()">Try Again</button>
+        <p id="onlineMessage" class="hidden">You're back online! Reloading...</p>
+    </div>
+
+    <script>
+        function retryConnection() {
+            location.reload();
+        }
+
+        window.addEventListener('online', function() {
+            let message = document.getElementById("onlineMessage");
+            message.classList.remove("hidden");
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
