@@ -1,89 +1,88 @@
-const CACHE_NAME = 'resistor-hub-cache-v1.7'; // Cache version
+const CACHE_NAME = 'resistor-hub-cache-v1.8'; // Updated cache version
+const MAX_CACHE_ITEMS = 50; // Limit for cache cleanup
 const ASSETS = [
-    '/resistor/index.html',       // 3/4 band page
-    '/resistor/css/style3.css',    // styles
+    '/resistor/index.html',
+    '/resistor/offline.html', // Fallback offline page
+    '/resistor/css/style3.css',
     '/resistor/css/style5.css',
     '/resistor/css/navbar.css',
     '/resistor/css/responsive.css',
-    '/resistor/js/3-band.js',  // scripts
+    '/resistor/js/3-band.js',
     '/resistor/js/5-band.js',
-    '/resistor/icons/icon512x512.png',  // 512x512 icon
-    '/resistor/icons/resbody1.png',  // resistor image
+    '/resistor/icons/icon512x512.png',
+    '/resistor/icons/resbody1.png',
     '/resistor/icons/resbody2.png'
 ];
 
 // Install event: Cache resources
 self.addEventListener('install', (event) => {
-    console.log('[Service Worker] Install event triggered');
+    console.info('[Service Worker] Installing and caching assets');
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('[Service Worker] Caching assets');
             return cache.addAll(ASSETS);
         }).catch((error) => {
-            console.error('[Service Worker] Failed to cache assets:', error);
+            console.error('[Service Worker] Asset caching failed:', error);
         })
     );
-    self.skipWaiting(); // Force the new service worker to take control immediately
+    self.skipWaiting(); // Activate immediately
 });
 
-// Activate event: Clean up old caches
+// Activate event: Cleanup old caches
 self.addEventListener('activate', (event) => {
-    console.log('[Service Worker] Activate event triggered');
+    console.info('[Service Worker] Activating and cleaning up old caches');
     event.waitUntil(
         caches.keys().then((keys) => {
             return Promise.all(
                 keys.map((key) => {
                     if (key !== CACHE_NAME) {
-                        console.log('[Service Worker] Removing old cache:', key);
+                        console.warn('[Service Worker] Removing old cache:', key);
                         return caches.delete(key);
                     }
                 })
             );
         }).then(() => {
-            console.log('[Service Worker] Claiming clients');
-            return self.clients.claim(); // Ensure the new service worker controls all clients
+            console.info('[Service Worker] New version ready to handle fetches!');
+            return self.clients.claim();
         })
     );
 });
 
-// Fetch event: Serve resources from cache or fetch from network
+// Fetch event: Serve from cache, update in background
 self.addEventListener('fetch', (event) => {
-    console.log('[Service Worker] Fetching:', event.request.url);
-
     event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) {
-                console.log('[Service Worker] Serving from cache:', event.request.url);
-                
-                // Clone response and add custom header
-                return cachedResponse.blob().then((body) => {
-                    let headers = new Headers({
-                        'Content-Type': cachedResponse.headers.get('Content-Type') || 'text/html',
-                        'X-Service-Worker': 'true' // Custom header to indicate service worker response
-                    });
-
-                    return new Response(body, {
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.match(event.request).then((cachedResponse) => {
+                if (cachedResponse) {
+                    console.info('[Service Worker] Serving from cache:', event.request.url);
+                    return new Response(cachedResponse.body, {
                         status: cachedResponse.status,
                         statusText: cachedResponse.statusText,
-                        headers: headers
+                        headers: { ...cachedResponse.headers, 'X-Service-Worker': 'true' }
                     });
-                });
-            }
-
-            console.log('[Service Worker] Fetching from network:', event.request.url);
-            return fetch(event.request).then((networkResponse) => {
-                if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-                    return networkResponse; // Return network response if invalid
                 }
 
-                return caches.open(CACHE_NAME).then((cache) => {
-                    console.log('[Service Worker] Caching new resource:', event.request.url);
-                    cache.put(event.request, networkResponse.clone());
+                let fetchPromise = fetch(event.request).then((networkResponse) => {
+                    if (networkResponse && networkResponse.status === 200) {
+                        cache.put(event.request, networkResponse.clone());
+                        cleanUpCache(cache);
+                    }
                     return networkResponse;
+                }).catch(() => {
+                    console.warn('[Service Worker] Network request failed:', event.request.url);
+                    return caches.match('/resistor/offline.html'); // Show offline page if network fails
                 });
-            }).catch((error) => {
-                console.error('[Service Worker] Fetch failed:', error);
+
+                return fetchPromise;
             });
         })
     );
 });
+
+// Function to clean up old cache items
+async function cleanUpCache(cache) {
+    const keys = await cache.keys();
+    if (keys.length > MAX_CACHE_ITEMS) {
+        await cache.delete(keys[0]); // Remove the oldest item
+        console.warn('[Service Worker] Cache cleanup performed');
+    }
+            }
