@@ -53,13 +53,14 @@
 };
        
     
+    
     async function checkStatus() {
         let statusDot = document.getElementById("statusDot");
 
         try {
             // If offline, assume service worker is serving the page
             if (!navigator.onLine) {
-                statusDot.style.backgroundColor = "orange"; // Offline (served from SW)
+                statusDot.style.backgroundColor = "crimson"; // Offline (served from SW)
                 return;
             }
 
@@ -78,14 +79,10 @@
 
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.ready.then(() => checkStatus());
-
-        // Update status when Service Worker takes control
         navigator.serviceWorker.addEventListener('controllerchange', checkStatus);
     }
 
-    // Listen for network changes
     window.addEventListener('online', checkStatus);
     window.addEventListener('offline', checkStatus);
 
-    // Initial check
     checkStatus();
