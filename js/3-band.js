@@ -52,28 +52,36 @@
     calculateResistance2(); // For 5-band
 };
        
-async function checkStatus() {
-            let statusText = document.getElementById("statusText");
-            let statusDot = document.getElementById("statusDot");
+    async function checkStatus() {
+        let statusText = document.getElementById("statusText");
+        let statusDot = document.getElementById("statusDot");
 
-            if (navigator.onLine) {
-                // Check if page is served by service worker
-                let response = await fetch(window.location.href, { cache: "no-store" }).catch(() => null);
-                
-                if (response && response.type === "opaque") {
-                    // Served via service worker
-                    statusText.innerText = "";
-                    statusDot.style.backgroundColor = "orange";
-                } else {
-                    // Served from the internet
-                    statusText.innerText = "";
-                    statusDot.style.backgroundColor = "green";
-                }
-            } else {
-                // Offline (Service Worker case)
+        try {
+            let response = await fetch(window.location.href, { cache: "no-store" });
+
+            if (response.headers.get("X-Service-Worker") === "true") {
+                // Page was served from service worker while online
                 statusText.innerText = "";
                 statusDot.style.backgroundColor = "orange";
+            } else {
+                // Served directly from the internet
+                statusText.innerText = "";
+                statusDot.style.backgroundColor = "green";
             }
+        } catch (error) {
+            // Likely offline, served from service worker
+            statusText.innerText = "";
+            statusDot.style.backgroundColor = "orange";
         }
+    }
 
-        checkStatus();
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(() => {
+            checkStatus();
+        });
+    }
+
+    window.addEventListener('online', checkStatus);
+    window.addEventListener('offline', checkStatus);
+
+    checkStatus();
