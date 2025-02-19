@@ -2,7 +2,8 @@ const CACHE_NAME = 'resistor-hub-cache-v1.8.1'; // Updated cache version
 const MAX_CACHE_ITEMS = 50; // Limit for cache cleanup
 const ASSETS = [
     '/resistor/index.html',
-    '/resistor/offline.html', // Fallback offline page
+    '/resistor/offline.html',
+    '/resistor/index.html?band=2',
     '/resistor/css/style3.css',
     '/resistor/css/style5.css',
     '/resistor/css/navbar.css',
@@ -11,7 +12,8 @@ const ASSETS = [
     '/resistor/js/5-band.js',
     '/resistor/icons/icon512x512.png',
     '/resistor/icons/resbody1.png',
-    '/resistor/icons/resbody2.png'
+    '/resistor/icons/resbody2.png',
+    '/resistor/privacy-policy.html'
 ];
 
 // Install event: Cache resources
