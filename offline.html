@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Oops! No Internet</title>
     <style>
         body {
@@ -14,17 +14,31 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 90vh;
             margin: 0;
         }
-        .container {
-            max-width: 400px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            text-align: center;
-        }
+        
+        @keyframes bounceShadow {
+    0%, 100% {
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.container {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    
+    /* Apply only the shadow animation */
+    animation: bounceShadow 1.5s infinite ease-in-out;
+}
+        
         .exclamation-wrapper {
             display: flex;
             justify-content: center;
@@ -76,13 +90,13 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <div class="container">
         <div class="exclamation-wrapper">
             <div class="exclamation">!</div>
         </div>
-        <h1>Oops! No Internet Connection!</h1>
-        <p>Dude, head back to civilization—that’s where the connection is!</p>
+        <h1>No Internet Connection!</h1>
+        <p>Dude, head back to civilization<br>that’s where the connection is!</p>
         <button class="retry-button" onclick="retryConnection()">Try Again</button>
         <p id="onlineMessage" class="hidden">You're back online! Reloading...</p>
     </div>
