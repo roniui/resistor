@@ -28,9 +28,9 @@
   "theme_color": "#0c2c4a",
   "icons": [
     {
-      "src": "/resistor/icons/pwa-icon.svg",
+      "src": "/resistor/icons/pwa-icon.png",
       "sizes": "512x512",
-      "type": "image/svg",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
