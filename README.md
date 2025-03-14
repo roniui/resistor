@@ -7,7 +7,7 @@
 ## **Resistor Hub**
 
 A user-friendly website and pwa designed to calculate the resistance of resistors based on their color codes. This tool is perfect for students, hobbyists, and professionals working with electronics.
- You can access live site from [GitHub Pages site](https://ohmlaws.github.io/resistor).
+ You can access live site from [GitHub Pages site](https://roniui.github.io/resistor).
 
 
  ---
@@ -37,7 +37,7 @@ A user-friendly website and pwa designed to calculate the resistance of resistor
 ---
 
 ## **Contributing**
-Contributions are welcome! If you'd like to improve the site or suggest features, feel free to submit [issues](https://github.com/ohmlaws/resistor/issues) or [pull requests](https://github.com/ohmlaws/resistor/pulls).
+Contributions are welcome! If you'd like to improve the site or suggest features, feel free to submit [issues](https://github.com/roniui/resistor/issues) or [pull requests](https://github.com/roniui/resistor/pulls).
 
 ---
 
