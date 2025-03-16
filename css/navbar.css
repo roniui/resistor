@@ -148,7 +148,10 @@
         background-color: orangered;
     }
     
-    #btnInstall {
+    @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+
+#btnInstall {
   padding: 10px 20px;
   font-size: 16px;
   color: #e2e2e2;
@@ -180,11 +183,119 @@
   white-space: nowrap; 
   overflow: hidden;
     }
-#statusDot {
-position: absolute;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-left: -60px;
+
+/* Message Box Styles */
+#container {
+    position: fixed;
+    margin: auto;
+    width: 700px;
+    height: 250px;
+    top: 20%;
+    transform: translate(1%, -20%);    
+    display: none; /* Initially hidden */
+    z-index: 1000;
+}
+
+/* Success Box */
+#success-box {
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    left: 6%;
+    background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(200, 200, 200, 0.5);
+}
+
+/* Error Box */
+#error-box {
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    left: 6%;
+    background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(200, 200, 200, 0.5);
+}
+
+/* Face Animation */
+.face, .face2 {
+    position: absolute;
+    width: 22%;
+    height: 22%;
+    background: white;
+    border-radius: 50%;
+    border: 1px solid #777;
+    top: 21%;
+    left: 37.5%;
+    
+}
+.face {
+    animation: bounce 3s ease-in-out infinite;
+}
+.face2 {
+    animation: move 3s ease-in-out infinite;
+}
+/* Eyes & Mouth */
+.eye {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #777;
+    border-radius: 50%;
+    top: 40%;
+    left: 20%;
+}
+
+.right {
+    left: 68%;
+}
+
+.mouth {
+    position: absolute;
+    top: 43%;
+    left: 41%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+/* Happy & Sad Face */
+.happy {
+    border: 2px solid;
+    border-color: transparent #777 #777 transparent;
+    transform: rotate(45deg);
+}
+
+.sad {
+    top: 49%;
+    border: 2px solid;
+    border-color: #777 transparent transparent #777;
+    transform: rotate(45deg);
+}
+
+.message {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 40%;
+    top: 47%;
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes move {
+  0% {
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 25%;
+  }
     }
