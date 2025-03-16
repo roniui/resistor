@@ -1,4 +1,4 @@
-const CACHE_NAME = 'resistor-hub-cache-v1.8.1'; // Updated cache version
+const CACHE_NAME = 'resistor-hub-cache-v1.8.2'; // Updated cache version
 const MAX_CACHE_ITEMS = 50; // Limit for cache cleanup
 const ASSETS = [
     '/resistor/index.html',
