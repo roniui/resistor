@@ -17,10 +17,10 @@ function showMessage(type) {
         successBox.style.display = 'none';
     }
 
-    // Hide after 3 seconds
+    // Hide after 7 seconds
     setTimeout(() => {
         container.style.display = 'none';
-    }, 3000);
+    }, 7000);
 }
 
 // Detect if running as a PWA
