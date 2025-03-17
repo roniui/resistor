@@ -17,12 +17,14 @@ function showMessage(type) {
         successBox.style.display = 'none';
     }
 
-    // Hide after 7 seconds
+    // Hide after 15 seconds
     setTimeout(() => {
         container.style.display = 'none';
-    }, 7000);
+    }, 15000);
 }
-
+document.querySelector(".close-btn").addEventListener("click", function() {
+    document.getElementById("error-box").style.display = "none";
+});
 // Detect if running as a PWA
 const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
