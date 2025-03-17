@@ -187,8 +187,8 @@
 #container {
     position: fixed;
     margin: auto;
-    width: 700px;
-    height: 250px;
+    width: 900px;
+    height: 350px;
     top: 20%;
     transform: translate(1%, -20%);    
     display: none; /* Initially hidden */
@@ -200,18 +200,17 @@
     position: absolute;
     width: 35%;
     height: 100%;
-    left: 6%;
+    left: 1%;
     background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
     border-radius: 20px;
     box-shadow: 5px 5px 20px rgba(200, 200, 200, 0.5);
 }
 
-/* Error Box */
 #error-box {
     position: absolute;
     width: 35%;
     height: 100%;
-    left: 6%;
+    left: 1%;
     background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
     border-radius: 20px;
     box-shadow: 5px 5px 20px rgba(200, 200, 200, 0.5);
@@ -228,9 +227,6 @@
     top: 21%;
     left: 37.5%;
     
-}
-.face {
-    animation: bounce 3s ease-in-out infinite;
 }
 .face2 {
     animation: move 3s ease-in-out infinite;
@@ -297,12 +293,29 @@
   100% {
     left: 25%;
   }
-    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+.close-btn:hover {
+    color: #ccc;
+}
+
 #statusDot {
             position: fixed;
             width: 3px;
             height: 3px;
-            border-radius: 50%;    
+            border-radius: 50%;  
             bottom: 20px;
             left: 20px;
-            }
+    }
