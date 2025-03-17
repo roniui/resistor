@@ -1,4 +1,3 @@
-
     .wrapper {
     position: fixed;
     top: 0;
@@ -279,7 +278,7 @@
     width: 100%;
     text-align: center;
     height: 40%;
-    top: 47%;
+    top: 40%;
 }
 
 @keyframes bounce {
