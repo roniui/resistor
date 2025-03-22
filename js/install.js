@@ -1,30 +1,27 @@
 let deferredInstallPrompt;
 const unsupportedBrowsers = ['Safari', 'Firefox'];
 
-// Function to Show Message Box
-function showMessage(type) {
+// Function to Show Error Box
+function showErrorBox() {
+const overlay = document.getElementById('overlay');
     const container = document.getElementById('container');
-    const successBox = document.getElementById('success-box');
-    const errorBox = document.getElementById('error-box');
-
-    container.style.display = 'block'; // Show message container
-
-    if (type === 'success') {
-        successBox.style.display = 'block';
-        errorBox.style.display = 'none';
-    } else {
-        errorBox.style.display = 'block';
-        successBox.style.display = 'none';
-    }
-
-    // Hide after 15 seconds
+    overlay.style.display = 'block';
+    container.style.display = 'block';  // Show the error box
+document.body.classList.add('no-scroll');
+    // Hide after 12 seconds
     setTimeout(() => {
+    overlay.style.display = 'none';
         container.style.display = 'none';
-    }, 15000);
+        document.body.classList.remove('no-scroll');  // Enable scrolling again
+    }, 12000);
 }
-document.querySelector(".close-btn").addEventListener("click", function() {
-    document.getElementById("error-box").style.display = "none";
+
+// Close button functionality
+document.querySelector('.close-btn').addEventListener('click', () => {
+   document.getElementById('overlay').style.display = 'none'; document.getElementById('container').style.display = 'none';
+    document.body.classList.remove('no-scroll');
 });
+
 // Detect if running as a PWA
 const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
@@ -39,6 +36,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     deferredInstallPrompt = e;
     console.log('beforeinstallprompt event fired');
 
+    // Show install buttons
     document.getElementById('btnInstall').style.display = 'block';
     document.getElementById('btninstall').style.display = 'block';
 });
@@ -52,19 +50,18 @@ function installPWA(button) {
                 console.log('User accepted installation');
                 button.style.display = 'none';
                 localStorage.setItem('pwaInstalled', 'true');
-                showMessage('success');
             } else {
                 console.log('User dismissed installation');
-                showMessage('error');
+                showErrorBox();  // Show error box on cancel
             }
             deferredInstallPrompt = null;
         });
     } else {
+        // Handle unsupported browsers or issues
         if (unsupportedBrowsers.some(browser => navigator.userAgent.includes(browser))) {
-            showMessage('error');
-        } else {
-            showMessage('error');
+            console.log('Unsupported browser detected');
         }
+        showErrorBox();  // Show error box for any issue
     }
 }
 
