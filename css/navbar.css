@@ -1,3 +1,4 @@
+
     .wrapper {
     position: fixed;
     top: 0;
@@ -147,7 +148,7 @@
         background-color: orangered;
     }
     
-    @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+ @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
 
 #btnInstall {
@@ -183,44 +184,51 @@
   overflow: hidden;
     }
 
-/* Message Box Styles */
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);  /* Dim background */
+    z-index: 9999; 
+    display: none;  /* Initially hidden */
+    pointer-events: auto;  /* Enable blocking */
+}
+/*  Message Box Styles */
 #container {
     position: fixed;
     margin: auto;
-    width: 900px;
+    width: 930px;
     height: 350px;
+    left: 10px;
     top: 20%;
     transform: translate(1%, -20%);    
     display: none; /* Initially hidden */
     z-index: 1000;
 }
 
-/* Success Box */
-#success-box {
-    position: absolute;
-    width: 35%;
-    height: 100%;
-    left: 1%;
-    background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
-    border-radius: 20px;
-    box-shadow: 5px 5px 20px rgba(200, 200, 200, 0.5);
-}
+
 
 #error-box {
     position: absolute;
     width: 35%;
     height: 100%;
     left: 1%;
-    background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
-    border-radius: 20px;
-    box-shadow: 5px 5px 20px rgba(200, 200, 200, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Glassmorphism effect */
+      backdrop-filter: blur(25px); /* Frosted glass */
+      border-radius: 15px;
+      border: 2px solid rgba(218, 117, 13, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      color: #E74C3C;
 }
 
 /* Face Animation */
-.face, .face2 {
+.face2 {
     position: absolute;
-    width: 22%;
-    height: 22%;
+    width: 20%;
+    height: 18%;
     background: white;
     border-radius: 50%;
     border: 1px solid #777;
@@ -295,7 +303,7 @@
   }
 }
 
-.close-btn {
+ .close-btn {
     position: absolute;
     top: 0px;
     right: 10px;
@@ -306,16 +314,21 @@
     border: none;
     outline: none;
     font-weight: bold;
+    z-index: 100000;
 }
 .close-btn:hover {
     color: #ccc;
+}
+
+body.no-scroll {
+    overflow: hidden; /* Prevent scrolling */
 }
 
 #statusDot {
             position: fixed;
             width: 3px;
             height: 3px;
-            border-radius: 50%;  
+            border-radius: 50%;           
             bottom: 20px;
             left: 20px;
     }
